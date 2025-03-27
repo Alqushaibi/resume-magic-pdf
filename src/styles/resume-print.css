@@ -1,0 +1,45 @@
+
+@media print {
+  @page {
+    size: letter portrait;
+    margin: 0.5cm;
+  }
+  
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  .resume-container {
+    width: 100%;
+    max-width: 100%;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  footer button, 
+  footer .flex {
+    display: none !important;
+  }
+  
+  /* Avoid page breaks inside these elements */
+  .glass-panel,
+  .education-item,
+  .work-experience-item,
+  .project-item,
+  .publication-item {
+    page-break-inside: avoid;
+  }
+  
+  /* Force page breaks before these sections if needed */
+  .force-page-break {
+    page-break-before: always;
+  }
+  
+  /* Hide animations and transitions during print */
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

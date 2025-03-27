@@ -1,0 +1,59 @@
+
+/* PDF Export specific styles */
+.pdf-optimized {
+  /* Ensure fonts are embedded properly */
+  font-display: swap;
+}
+
+/* Make sure all images have proper resolution for PDF */
+.pdf-optimized img {
+  image-rendering: high-quality;
+}
+
+/* Glass panels for PDF export */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(209, 213, 219, 0.3);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease-in-out;
+}
+
+.glass-panel:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Ensure svg elements render properly in PDF */
+svg {
+  vector-effect: non-scaling-stroke;
+}
+
+/* Resume container styles */
+.resume-container {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Custom accent color for resume */
+.text-resume-accent {
+  color: #0070F3;
+}
+
+.bg-resume-accent {
+  background-color: #0070F3;
+}
+
+.border-resume-accent {
+  border-color: #0070F3;
+}
+
+.bg-resume-light-blue {
+  background-color: rgba(0, 112, 243, 0.1);
+}
