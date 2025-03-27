@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { toast } from "sonner";
 import '@/styles/animations.css';
@@ -13,7 +14,7 @@ import Publications from '@/components/Publications';
 import LanguageProficiency from '@/components/LanguageProficiency';
 import ProjectExecution from '@/components/ProjectExecution';
 import Qualifications from '@/components/Qualifications';
-import { BookOpen, Award, Briefcase, GraduationCap, Languages, FileCode, Users, Brain, FileCheck, UserCheck, BadgeCheck, BookOpenCheck } from 'lucide-react';
+import { BookOpen, Award, Briefcase, GraduationCap, Languages, FileCode, Users, Brain, FileCheck, UserCheck, BadgeCheck, BookOpenCheck, Mail, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Index = () => {
