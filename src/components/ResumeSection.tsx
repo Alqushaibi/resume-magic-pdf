@@ -1,5 +1,5 @@
 
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 
 interface ResumeSectionProps {
   title: string;
@@ -9,6 +9,24 @@ interface ResumeSectionProps {
 }
 
 const ResumeSection: React.FC<ResumeSectionProps> = ({ title, id, children, className = '' }) => {
+  useEffect(() => {
+    // Ensure images load with proper fade-in effect
+    const preloadImages = () => {
+      const images = document.querySelectorAll('img');
+      images.forEach(img => {
+        if (img.complete) {
+          img.classList.add('opacity-100');
+        } else {
+          img.addEventListener('load', () => {
+            img.classList.add('opacity-100');
+          });
+        }
+      });
+    };
+
+    preloadImages();
+  }, []);
+
   return (
     <section 
       id={id} 

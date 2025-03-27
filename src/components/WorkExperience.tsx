@@ -31,7 +31,7 @@ const WorkExperience: React.FC<WorkExperienceProps> = ({
       className="glass-panel rounded-lg p-5 work-experience-item mb-6"
     >
       <div className="flex flex-wrap md:flex-nowrap gap-4">
-        <div className="flex-shrink-0 w-24 h-24 flex items-center justify-center">
+        <div className="flex-shrink-0 w-24 h-24 flex items-center justify-center bg-white rounded-md">
           <img
             src={item.logo}
             alt={`${item.company} logo`}

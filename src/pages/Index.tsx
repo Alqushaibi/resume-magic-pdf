@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { toast } from "sonner";
 import '@/styles/animations.css';
@@ -17,11 +16,32 @@ import Qualifications from '@/components/Qualifications';
 import { BookOpen, Award, Briefcase, GraduationCap, Languages, FileCode, Users, Brain, FileCheck, UserCheck, BadgeCheck, BookOpenCheck, Mail, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-const Index = () => {
+interface IndexProps {
+  logoAssets?: {
+    aiesec: string;
+    cerdas: string;
+    ecosensa: string;
+    mbot: string;
+    sabafon: string;
+    utm: string;
+    utp: string;
+  };
+}
+
+const Index: React.FC<IndexProps> = ({ logoAssets }) => {
   const resumeRef = useRef<HTMLDivElement>(null);
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
 
-  // Personal Information
+  const logos = logoAssets || {
+    aiesec: "/aiesec.png",
+    cerdas: "/cerdas.png",
+    ecosensa: "/ecosensa.png",
+    mbot: "/mbot.png",
+    sabafon: "/sabafon.png",
+    utm: "/utm.png",
+    utp: "/utp.png"
+  };
+
   const personalInfo = {
     name: "Alawi Alqushaibi",
     title: "Doctor of Philosophy in Information Technology",
@@ -33,12 +53,11 @@ const Index = () => {
     summary: "Working with the highest level of loyalty and sincerity in order to help the organization attains a high positive ranking among other competitors."
   };
 
-  // Education with updated UTP logo
   const education = [
     {
       degree: "Ph.D. in IT, by Research",
       institution: "Universiti Teknologi PETRONAS, Malaysia",
-      logo: "/utp.png",
+      logo: logos.utp,
       startDate: "Jan 2022",
       endDate: "current",
       description: [
@@ -50,7 +69,7 @@ const Index = () => {
     {
       degree: "M.S. in IT, by Research",
       institution: "Universiti Teknologi PETRONAS, Malaysia",
-      logo: "/utp.png",
+      logo: logos.utp,
       startDate: "Jul 2019",
       endDate: "Aug 2021",
       description: [
@@ -64,7 +83,7 @@ const Index = () => {
     {
       degree: "B.S. in Computer Science",
       institution: "Universiti Teknologi Malaysia",
-      logo: "/utm.png",
+      logo: logos.utm,
       startDate: "Jan 2008",
       endDate: "Mar 2012",
       description: [
@@ -75,12 +94,11 @@ const Index = () => {
     }
   ];
 
-  // Work Experience with updated logo
   const academicExperiences = [
     {
       position: "Graduate Research Assistant",
       company: "Universiti Teknologi PETRONAS",
-      logo: "/utp.png",
+      logo: logos.utp,
       startDate: "Currently",
       endDate: "Present",
       responsibilities: [
@@ -95,7 +113,7 @@ const Index = () => {
     {
       position: "System Administrator Assistant",
       company: "Sabafon Company, Yemen",
-      logo: "/sabafon.png",
+      logo: logos.sabafon,
       startDate: "Jun 2013",
       endDate: "May 2018",
       responsibilities: [
@@ -111,7 +129,7 @@ const Index = () => {
     {
       position: "Customer Care Consultant",
       company: "Sabafon Company, Yemen",
-      logo: "/sabafon.png",
+      logo: logos.sabafon,
       startDate: "Jul 2012",
       endDate: "Jun 2013",
       responsibilities: [
@@ -124,7 +142,7 @@ const Index = () => {
     {
       position: "Practical Training",
       company: "Ecosensa Technologies Sdn. Bhd, Malaysia",
-      logo: "/ecosensa.png",
+      logo: logos.ecosensa,
       startDate: "Jul 2011",
       endDate: "Dec 2012",
       responsibilities: [
@@ -135,7 +153,6 @@ const Index = () => {
     }
   ];
 
-  // Skills
   const skills = [
     { name: "Python", icon: "🐍", level: 4, maxLevel: 5 },
     { name: "MATLAB", icon: "📊", level: 4, maxLevel: 5 },
@@ -143,7 +160,6 @@ const Index = () => {
     { name: "SQL", icon: "📝", level: 3, maxLevel: 5 }
   ];
 
-  // Publications with additional fields
   const journals = [
     {
       title: "Enhanced Colon Cancer Segmentation and Image Synthesis through Advanced Generative Adversarial Networks based-Sine Cosine Algorithm",
@@ -226,12 +242,10 @@ const Index = () => {
     }
   ];
 
-  // We need to keep the grants array but we won't be passing it to the Publications component
   const grants = [
     "A novel weight optimized recurrent neural network for real time metocean predictive analytics."
   ];
 
-  // Verified Review Records
   const reviewRecords = [
     "Computers, Materials and Continua",
     "IEEE Access",
@@ -240,7 +254,6 @@ const Index = () => {
     "Franklin Open"
   ];
 
-  // Research Interests
   const researchInterests = [
     "Artificial Intelligence",
     "Machine Learning",
@@ -249,7 +262,6 @@ const Index = () => {
     "Optimizations"
   ];
 
-  // Referees
   const referees = [
     {
       name: "AP. Dr. Mohd Hilmi Hasan",
@@ -277,77 +289,73 @@ const Index = () => {
     }
   ];
 
-  // Memberships
   const memberships = [
     {
       title: "PROFESSIONAL TECHNOLOGIST",
       organization: "Malaysia Board of Technologists (MBOT)",
-      logo: "/mbot.png"
+      logo: logos.mbot
     },
     {
       title: "GRADUATE TECHNOLOGIST",
       organization: "Malaysia Board of Technologists (MBOT)",
-      logo: "/mbot.png"
+      logo: logos.mbot
     },
     {
       title: "Centre for Research in Data Science (CERDAS)",
       organization: "Universiti Teknologi PETRONAS",
-      logo: "/cerdas.png"
+      logo: logos.cerdas
     },
     {
       title: "AIESEC",
       organization: "Universiti Teknologi Malaysia, Johor Bahru, Malaysia",
-      logo: "/aiesec.png"
+      logo: logos.aiesec
     }
   ];
 
-  // Projects with updated logos
   const projects = [
     {
       title: "A novel weight optimized recurrent neural network for real time metocean predictive analytics",
       institution: "Universiti Teknologi PETRONAS",
-      logo: "/utp.png",
+      logo: logos.utp,
       startYear: "2019",
       endYear: "2020"
     },
     {
       title: "Investigation of Scalable and High-Performing Automated Data Preprocessing Framework for Very Big Data Stream in Oil Platform Equipment's Time to Failure Prediction Model.",
       institution: "Universiti Teknologi PETRONAS",
-      logo: "/utp.png",
+      logo: logos.utp,
       startYear: "2022",
       endYear: "2023"
     },
     {
       title: "Fundamental study of supervised machine learning techniques for autonomous defect mapping of offshore structures",
       institution: "Universiti Teknologi PETRONAS",
-      logo: "/utp.png",
+      logo: logos.utp,
       startYear: "2023",
       endYear: "2024"
     },
     {
       title: "Digital Twin Model for Structural Asset Monitoring Solution and Decision Making for Onshore Facilities",
       institution: "Universiti Teknologi PETRONAS",
-      logo: "/utp.png",
+      logo: logos.utp,
       startYear: "2023",
       endYear: "2025"
     },
     {
       title: "Assessment of Structural Steel Riser-Guard Load Capacities on the Resultant Impact on Offshore Structures Loading",
       institution: "Universiti Teknologi PETRONAS",
-      logo: "/utp.png",
+      logo: logos.utp,
       startYear: "2024",
       endYear: "2025"
     }
   ];
 
-  // Languages
   const languages = [
     { name: "Arabic", flagCode: "SA", level: 5 },
     { name: "English", flagCode: "US", level: 5 },
     { name: "Malay", flagCode: "MY", level: 2 }
   ];
 
-  // Qualifications
   const qualifications = [
     {
       name: "One day workshop on 'Student Centered Learning: Engaging Learners through Active Learning'",
@@ -399,7 +407,6 @@ const Index = () => {
     }
   ];
 
-  // Print functionality
   const handlePrintResume = () => {
     if (!resumeRef.current) return;
 
@@ -407,7 +414,6 @@ const Index = () => {
     toast.success("Print dialog opened");
   };
 
-  // Download PDF functionality
   const handleDownloadPDF = async () => {
     if (!resumeRef.current) return;
   
@@ -415,7 +421,6 @@ const Index = () => {
     toast.info("Preparing PDF for download...");
   
     try {
-      // Dynamically import html2pdf.js only when needed
       const html2pdfModule = await import('html2pdf.js');
       const html2pdf = html2pdfModule.default;
   
@@ -451,7 +456,6 @@ const Index = () => {
         }
       };
   
-      // Hide buttons before generating PDF
       const buttons = document.querySelectorAll('footer .flex button');
       buttons.forEach(button => {
         if (button instanceof HTMLElement) {
@@ -459,27 +463,22 @@ const Index = () => {
         }
       });
   
-      // Wait for all fonts to load
       await document.fonts.ready;
   
-      // Generate and save the PDF
       const pdfResult = await html2pdf()
         .from(element)
         .set(opt)
         .toPdf()
         .get('pdf');
   
-      // Add metadata
       pdfResult.setProperties({
         title: 'Alawi Alqushaibi Resume',
         author: 'Alawi Alqushaibi',
         creator: 'Resume Builder'
       });
   
-      // Save the PDF file
       await pdfResult.save();
   
-      // Show buttons after PDF generation
       buttons.forEach(button => {
         if (button instanceof HTMLElement) {
           button.style.display = '';
@@ -495,7 +494,6 @@ const Index = () => {
     }
   };
 
-  // Share functionality
   const handleShareResume = () => {
     if (navigator.share) {
       navigator.share({
@@ -509,14 +507,12 @@ const Index = () => {
         toast.error("Failed to share resume");
       });
     } else {
-      // Fallback for browsers that don't support Web Share API
       navigator.clipboard.writeText(window.location.href)
         .then(() => toast.success("Resume URL copied to clipboard"))
         .catch(() => toast.error("Failed to copy URL"));
     }
   };
 
-  // Animation effect on scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
