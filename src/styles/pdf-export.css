@@ -57,3 +57,8 @@ svg {
 .bg-resume-light-blue {
   background-color: rgba(0, 112, 243, 0.1);
 }
+/* Disable animations and transitions during print */
+/* * {
+  animation: none !important;
+  transition: none !important;
+} */

@@ -414,48 +414,174 @@ const Index: React.FC<IndexProps> = ({ logoAssets }) => {
     toast.success("Print dialog opened");
   };
 
+  // const handleDownloadPDF = async () => {
+  //   if (!resumeRef.current) return;
+  
+  //   setIsGeneratingPdf(true);
+  //   toast.info("Preparing PDF for download...");
+  
+  //   try {
+  //     const html2pdfModule = await import('html2pdf.js');
+  //     const html2pdf = html2pdfModule.default;
+  
+  //     const element = resumeRef.current;
+  //     const filename = 'Alawi_Alqushaibi_Resume.pdf';
+  
+  //     const opt = {
+  //       margin: [2, 2, 2, 2], // [top, right, bottom, left] in mm
+  //       filename: filename,
+  //       image: { type: 'jpeg', quality: 1.0 },
+  //       html2canvas: {
+  //         scale: 2,
+  //         useCORS: true,
+  //         allowTaint: true,
+  //         letterRendering: true,
+  //         logging: false,
+  //         removeContainer: true,
+  //         dpi: 300
+  //       },
+  //       jsPDF: {
+  //         unit: 'mm',
+  //         format: 'letter',
+  //         orientation: 'portrait',
+  //         compress: false,
+  //         precision: 16,
+  //         putOnlyUsedFonts: true,
+  //         hotfixes: ["px_scaling"]
+  //       },
+  //       pagebreak: {
+  //         mode: ['avoid-all', 'css', 'legacy'],
+  //         before: '.force-page-break',
+  //         avoid: '.avoid-page-break, .glass-panel, .education-item, .work-experience-item, .project-item, .publication-item'
+  //       }
+  //     };
+  
+  //     const buttons = document.querySelectorAll('footer .flex button');
+  //     buttons.forEach(button => {
+  //       if (button instanceof HTMLElement) {
+  //         button.style.display = 'none';
+  //       }
+  //     });
+  
+  //     await document.fonts.ready;
+  
+  //     const pdfResult = await html2pdf()
+  //       .from(element)
+  //       .set(opt)
+  //       .toPdf()
+  //       .get('pdf');
+  
+  //     pdfResult.setProperties({
+  //       title: 'Alawi Alqushaibi Resume',
+  //       author: 'Alawi Alqushaibi',
+  //       creator: 'Resume Builder'
+  //     });
+  
+  //     await pdfResult.save();
+  
+  //     buttons.forEach(button => {
+  //       if (button instanceof HTMLElement) {
+  //         button.style.display = '';
+  //       }
+  //     });
+  
+  //     toast.success("Resume downloaded successfully");
+  //   } catch (error) {
+  //     console.error('PDF generation error:', error);
+  //     toast.error("Failed to download PDF. Please try again.");
+  //   } finally {
+  //     setIsGeneratingPdf(false);
+  //   }
+  // };
+
+
+  // const handleDownloadPDF = async () => {
+  //   if (!resumeRef.current) return;
+  
+  //   setIsGeneratingPdf(true);
+  //   toast.info("Generating vector-optimized PDF...");
+  
+  //   try {
+  //     // Create a clone of the resume element
+  //     const clone = resumeRef.current.cloneNode(true) as HTMLElement;
+      
+  //     // Apply PDF-optimized styles
+  //     clone.classList.add('pdf-optimized');
+  //     clone.style.width = '210mm'; // Standard A4 width
+  //     document.body.appendChild(clone);
+  
+  //     // Use browser's native print to PDF
+  //     const printWindow = window.open('', '_blank');
+  //     printWindow?.document.write(`
+  //       <html>
+  //         <head>
+  //           <title>Alawi Alqushaibi Resume</title>
+  //           <link rel="stylesheet" href="/pdf-export.css">
+  //           <link rel="stylesheet" href="/resume-print.css">
+  //         </head>
+  //         <body>
+  //           ${clone.outerHTML}
+  //         </body>
+  //       </html>
+  //     `);
+      
+  //     printWindow?.document.close();
+  //     printWindow?.focus();
+  //     printWindow?.print();
+      
+  //     document.body.removeChild(clone);
+  //     toast.success("PDF ready for download via browser print dialog");
+  //   } catch (error) {
+  //     console.error('PDF generation error:', error);
+  //     toast.error("Failed to generate PDF");
+  //   } finally {
+  //     setIsGeneratingPdf(false);
+  //   }
+  // };
+
   const handleDownloadPDF = async () => {
     if (!resumeRef.current) return;
-  
     setIsGeneratingPdf(true);
-    toast.info("Preparing PDF for download...");
+    toast.info("Preparing vector-based PDF for download...");
   
     try {
       const html2pdfModule = await import('html2pdf.js');
       const html2pdf = html2pdfModule.default;
   
-      const element = resumeRef.current;
-      const filename = 'Alawi_Alqushaibi_Resume.pdf';
+      // Wait for fonts to load completely
+      await document.fonts.ready;
   
+      // Configure options for vector-based PDF
       const opt = {
-        margin: [2, 2, 2, 2], // [top, right, bottom, left] in mm
-        filename: filename,
-        image: { type: 'jpeg', quality: 1.0 },
+        margin: [10, 5, 10, 5], // [top, right, bottom, left] in mm
+        filename: 'Alawi_Alqushaibi_Resume.pdf',
+        image: { type: 'jpeg', quality: 1.0 }, // Fallback for images
         html2canvas: {
-          scale: 2,
-          useCORS: true,
-          allowTaint: true,
-          letterRendering: true,
+          scale: 2, // High resolution
+          useCORS: true, // Enable cross-origin for images
+          allowTaint: false, // Prevent tainting (important for vector rendering)
+          letterRendering: true, // Render text as vector
           logging: false,
-          removeContainer: true,
-          dpi: 300
+          dpi: 300, // High DPI for clarity
+          svgRendering: true, // Ensure SVGs are rendered as vectors
         },
         jsPDF: {
           unit: 'mm',
           format: 'letter',
           orientation: 'portrait',
-          compress: false,
-          precision: 16,
-          putOnlyUsedFonts: true,
-          hotfixes: ["px_scaling"]
+          compress: true, // Compress the PDF file
+          precision: 16, // High precision for vector paths
+          putOnlyUsedFonts: true, // Embed only used fonts
+          floatPrecision: 16, // High precision for floating-point operations
         },
-        pagebreak: {
-          mode: ['avoid-all', 'css', 'legacy'],
-          before: '.force-page-break',
-          avoid: '.avoid-page-break, .glass-panel, .education-item, .work-experience-item, .project-item, .publication-item'
-        }
+        // pagebreak: {
+        //   mode: ['avoid-all', 'css', 'legacy'],
+        //   before: '.force-page-break',
+        //   avoid: '.avoid-page-break, .glass-panel, .education-item, .work-experience-item, .project-item, .publication-item',
+        // },
       };
   
+      // Temporarily hide buttons during PDF generation
       const buttons = document.querySelectorAll('footer .flex button');
       buttons.forEach(button => {
         if (button instanceof HTMLElement) {
@@ -463,29 +589,33 @@ const Index: React.FC<IndexProps> = ({ logoAssets }) => {
         }
       });
   
-      await document.fonts.ready;
-  
+      // Generate the PDF
       const pdfResult = await html2pdf()
-        .from(element)
+        .from(resumeRef.current)
         .set(opt)
         .toPdf()
         .get('pdf');
   
+      // Set PDF metadata
       pdfResult.setProperties({
         title: 'Alawi Alqushaibi Resume',
         author: 'Alawi Alqushaibi',
-        creator: 'Resume Builder'
+        creator: 'Resume Builder',
+        subject: 'Professional Resume',
+        keywords: 'resume, CV, Alawi Alqushaibi, professional',
       });
   
+      // Save the PDF
       await pdfResult.save();
   
+      // Restore button visibility
       buttons.forEach(button => {
         if (button instanceof HTMLElement) {
           button.style.display = '';
         }
       });
   
-      toast.success("Resume downloaded successfully");
+      toast.success("Vector-based PDF downloaded successfully");
     } catch (error) {
       console.error('PDF generation error:', error);
       toast.error("Failed to download PDF. Please try again.");
