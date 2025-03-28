@@ -624,6 +624,7 @@ const Index: React.FC<IndexProps> = ({ logoAssets }) => {
     }
   };
 
+  //share pdf
   const handleShareResume = () => {
     if (navigator.share) {
       navigator.share({
@@ -673,16 +674,24 @@ const Index: React.FC<IndexProps> = ({ logoAssets }) => {
         <ResumeHeader {...personalInfo} />
 
         <ResumeSection
-          title="Education"
-          id="education"
-          className="animate-delay-100"
+          title="Publications"
+          id="publications"
+          className="animate-delay-300"
         >
           <div className="flex items-center gap-2 mb-4">
-            <GraduationCap size={18} className="text-resume-accent" />
-            <span className="text-sm text-gray-600">Academic Background</span>
+            <BookOpen size={18} className="text-resume-accent" />
+            <span className="text-sm text-gray-600">Academic Contributions</span>
           </div>
-          <Education education={education} />
+          <Publications
+            journals={journals}
+            conferences={conferences}
+            bookChapters={bookChapters}
+            reviewRecords={reviewRecords}
+            googleScholarUrl="https://scholar.google.com/citations?hl=en&user=7B_-M3YAAAAJ"
+          />
         </ResumeSection>
+
+        
 
         <ResumeSection
           title="Working Experience"
@@ -698,6 +707,18 @@ const Index: React.FC<IndexProps> = ({ logoAssets }) => {
             professionalExperiences={professionalExperiences}
           />
         </ResumeSection>
+        <ResumeSection
+          title="Education"
+          id="education"
+          className="animate-delay-100"
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <GraduationCap size={18} className="text-resume-accent" />
+            <span className="text-sm text-gray-600">Academic Background</span>
+          </div>
+          <Education education={education} />
+        </ResumeSection>
+
         <ResumeSection
           title="Research Interests"
           id="research"
@@ -719,23 +740,7 @@ const Index: React.FC<IndexProps> = ({ logoAssets }) => {
           </div>
         </ResumeSection>
 
-        <ResumeSection
-          title="Publications"
-          id="publications"
-          className="animate-delay-300"
-        >
-          <div className="flex items-center gap-2 mb-4">
-            <BookOpen size={18} className="text-resume-accent" />
-            <span className="text-sm text-gray-600">Academic Contributions</span>
-          </div>
-          <Publications
-            journals={journals}
-            conferences={conferences}
-            bookChapters={bookChapters}
-            reviewRecords={reviewRecords}
-            googleScholarUrl="https://scholar.google.com/citations?hl=en&user=7B_-M3YAAAAJ"
-          />
-        </ResumeSection>
+        
         
         <ResumeSection
           title="Project Execution"
@@ -785,7 +790,7 @@ const Index: React.FC<IndexProps> = ({ logoAssets }) => {
             <span className="text-sm text-gray-600">Recognitions & Achievements</span>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="glass-panel rounded-lg p-4 flex items-center gap-3">
+            <div className="glass-panel rounded-lg p-1 flex items-center gap-1">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
                 <Award size={24} className="text-resume-accent" />
               </div>
@@ -794,7 +799,7 @@ const Index: React.FC<IndexProps> = ({ logoAssets }) => {
                 <p className="text-sm text-gray-600">Universiti Teknologi PETRONAS (UTP), 2024</p>
               </div>
             </div>
-            <div className="glass-panel rounded-lg p-4 flex items-center gap-3">
+            <div className="glass-panel rounded-lg p-1 flex items-center gap-1">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
                 <Award size={24} className="text-resume-accent" />
               </div>
@@ -804,7 +809,7 @@ const Index: React.FC<IndexProps> = ({ logoAssets }) => {
                 <p className="text-xs text-gray-500 mt-1">For completion of M.S. in the stipulated time of 24 months.</p>
               </div>
             </div>
-            <div className="glass-panel rounded-lg p-4 flex items-center gap-3">
+            <div className="glass-panel rounded-lg p-1 flex items-center gap-1">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
                 <Award size={24} className="text-resume-accent" />
               </div>
@@ -814,7 +819,7 @@ const Index: React.FC<IndexProps> = ({ logoAssets }) => {
                 <p className="text-xs text-gray-500 mt-1">For bachelor's degree.</p>
               </div>
             </div>
-            <div className="glass-panel rounded-lg p-4 flex items-center gap-3">
+            <div className="glass-panel rounded-lg p-1 flex items-center gap-1">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
                 <Award size={24} className="text-resume-accent" />
               </div>
@@ -823,7 +828,7 @@ const Index: React.FC<IndexProps> = ({ logoAssets }) => {
                 <p className="text-sm text-gray-600">Ministry of Higher Education, Malaysia, 2010</p>
               </div>
             </div>
-            <div className="glass-panel rounded-lg p-4 flex items-center gap-3">
+            <div className="glass-panel rounded-lg p-1 flex items-center gap-1">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
                 <Award size={24} className="text-resume-accent" />
               </div>
@@ -895,7 +900,7 @@ const Index: React.FC<IndexProps> = ({ logoAssets }) => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {referees.map((referee, index) => (
-              <div key={index} className="glass-panel rounded-lg p-4 flex items-center gap-3">
+              <div key={index} className="glass-panel rounded-lg p-1 flex items-center gap-1">
                 <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
                   <UserCheck size={24} className="text-resume-accent" />
                 </div>

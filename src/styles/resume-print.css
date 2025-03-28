@@ -1,45 +1,51 @@
 
-@media print {
-  @page {
-    size: letter portrait;
-    margin: 0.5cm;
-  }
+.pdf-optimized {
+  /* Ensure vector rendering */
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-smooth: always;
   
-  body {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
+  /* Ensure crisp borders and shapes */
+  shape-rendering: geometricPrecision;
   
-  .resume-container {
-    width: 100%;
-    max-width: 100%;
-    box-shadow: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  footer button, 
-  footer .flex {
-    display: none !important;
-  }
-  
-  /* Avoid page breaks inside these elements */
-  .glass-panel,
-  .education-item,
-  .work-experience-item,
-  .project-item,
-  .publication-item {
-    page-break-inside: avoid;
-  }
-  
-  /* Force page breaks before these sections if needed */
-  .force-page-break {
-    page-break-before: always;
-  }
-  
-  /* Hide animations and transitions during print */
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
+  /* Ensure fonts are embedded correctly */
+  font-display: swap;
+}
+
+.resume-container {
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: white;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(209, 213, 219, 0.3);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.glass-panel:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.text-resume-accent {
+  color: #3b82f6;
+}
+
+.bg-resume-accent {
+  background-color: #3b82f6;
+}
+
+.bg-resume-light-blue {
+  background-color: #e0f2fe;
+}
+
+/* Ensure all SVG icons render as vector */
+svg {
+  shape-rendering: geometricPrecision;
 }

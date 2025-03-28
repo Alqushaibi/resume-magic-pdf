@@ -27,7 +27,7 @@ const ProjectExecution: React.FC<ProjectExecutionProps> = ({ projects }) => {
           key={index} 
           className="glass-panel rounded-lg p-5 project-item"
         >
-          <div className="flex flex-wrap md:flex-nowrap gap-4">
+          <div className="flex flex-wrap md:flex-nowrap gap-1">
             <div className="flex-shrink-0 w-24 h-24 flex items-center justify-center bg-white rounded-md">
               <img
                 src={project.logo}
@@ -36,8 +36,8 @@ const ProjectExecution: React.FC<ProjectExecutionProps> = ({ projects }) => {
                   loadedImages[project.logo] ? 'opacity-100' : 'opacity-0'
                 }`}
                 onLoad={() => handleImageLoad(project.logo)}
-                width="96"
-                height="96"
+                width="48"
+                height="48"
               />
             </div>
             <div className="flex-grow">

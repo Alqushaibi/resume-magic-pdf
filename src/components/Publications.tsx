@@ -47,6 +47,21 @@ const Publications: React.FC<PublicationsProps> = ({
 }) => {
   return (
     <div className="space-y-8">
+      {googleScholarUrl && (
+        <div className="mb-4">
+          <a 
+            href={googleScholarUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-resume-light-blue text-gray-800 hover:text-resume-accent rounded-full transition-colors text-sm"
+          >
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z" />
+            </svg>
+            View Google Scholar Profile
+          </a>
+        </div>
+      )}
       {journals.length > 0 && (
         <div>
           <h3 className="text-xl font-medium text-gray-800 mb-4 flex items-center">
@@ -149,7 +164,7 @@ const Publications: React.FC<PublicationsProps> = ({
         </div>
       )}
 
-      {googleScholarUrl && (
+      {/* {googleScholarUrl && (
         <div className="mt-4 text-center">
           <a 
             href={googleScholarUrl}
@@ -178,7 +193,7 @@ const Publications: React.FC<PublicationsProps> = ({
             View Google Scholar Profile
           </a>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

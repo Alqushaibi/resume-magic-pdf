@@ -28,9 +28,9 @@ const WorkExperience: React.FC<WorkExperienceProps> = ({
   const renderExperienceItem = (item: ExperienceItem, index: number) => (
     <div 
       key={index} 
-      className="glass-panel rounded-lg p-5 work-experience-item mb-6"
+      className="glass-panel rounded-lg p-2 work-experience-item mb-2"
     >
-      <div className="flex flex-wrap md:flex-nowrap gap-4">
+      <div className="flex flex-wrap md:flex-nowrap gap-0.5">
         <div className="flex-shrink-0 w-24 h-24 flex items-center justify-center bg-white rounded-md">
           <img
             src={item.logo}
@@ -39,8 +39,8 @@ const WorkExperience: React.FC<WorkExperienceProps> = ({
               loadedImages[item.logo] ? 'opacity-100' : 'opacity-0'
             }`}
             onLoad={() => handleImageLoad(item.logo)}
-            width="96"
-            height="96"
+            width="48"
+            height="48"
           />
         </div>
         <div className="flex-grow">

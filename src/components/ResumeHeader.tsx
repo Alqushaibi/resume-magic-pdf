@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Mail, MapPin, Phone, Linkedin } from 'lucide-react';
+import { Mail, MapPin,Phone, Linkedin } from 'lucide-react';
 
 interface ResumeHeaderProps {
   name: string;
@@ -24,67 +24,44 @@ const ResumeHeader: React.FC<ResumeHeaderProps> = ({
   summary
 }) => {
   return (
-    <header className="mb-10 animate-blur-in">
-      <div className="flex items-center justify-between flex-wrap gap-4">
+    <header className="mb-8">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
         <div>
-          <h1 className="text-4xl font-bold text-gray-900 tracking-tight">{name}</h1>
-          <h2 className="text-xl font-medium text-resume-accent mt-1">{title}</h2>
-          <p className="mt-4 text-gray-600 max-w-2xl">{summary}</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-800">{name}</h1>
+          <h2 className="text-xl text-resume-accent font-serif mt-1">{title}</h2>
         </div>
-        <div className="flex flex-col space-y-2 text-sm">
-          <div className="flex items-center gap-2">
-            <MapPin size={16} className="text-resume-accent" />
-            <span>{location}</span>
-          </div>
+        <div className="mt-4 md:mt-0 flex flex-col space-y-1 text-sm text-gray-700">
           <a 
-            href={`tel:${phone}`} 
+            href={`tel:${phone}`}
             className="flex items-center gap-2 hover:text-resume-accent transition-colors"
-            aria-label={`Call ${phone}`}
           >
             <Phone size={16} className="text-resume-accent" />
-            <span>{phone}</span>
+            {phone}
           </a>
           <a 
-            href={`mailto:${email}`} 
+            href={`mailto:${email}`}
             className="flex items-center gap-2 hover:text-resume-accent transition-colors"
-            aria-label={`Email ${email}`}
           >
             <Mail size={16} className="text-resume-accent" />
-            <span>{email}</span>
+            {email}
           </a>
           <a 
-            href={linkedinUrl} 
-            target="_blank" 
-            rel="noopener noreferrer" 
+            href={linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2 hover:text-resume-accent transition-colors"
-            aria-label={`Visit LinkedIn profile: ${linkedin}`}
           >
             <Linkedin size={16} className="text-resume-accent" />
-            <span>{linkedin}</span>
+            {linkedin}
           </a>
+          <div className="flex items-center gap-2">
+            <MapPin size={16} className="text-resume-accent" />
+            {location}
+          </div>
         </div>
       </div>
-      <div className="border-t border-gray-200 mt-6 pt-6">
-        <div className="flex space-x-2 overflow-x-auto pb-2">
-          <span className="bg-resume-light-blue text-resume-accent px-3 py-1 rounded-full text-xs font-medium">
-            Machine Learning
-          </span>
-          <span className="bg-resume-light-blue text-resume-accent px-3 py-1 rounded-full text-xs font-medium">
-            Deep Learning
-          </span>
-          <span className="bg-resume-light-blue text-resume-accent px-3 py-1 rounded-full text-xs font-medium">
-            GANs
-          </span>
-          <span className="bg-resume-light-blue text-resume-accent px-3 py-1 rounded-full text-xs font-medium">
-            Optimization
-          </span>
-          <span className="bg-resume-light-blue text-resume-accent px-3 py-1 rounded-full text-xs font-medium">
-            Computer Vision
-          </span>
-          <span className="bg-resume-light-blue text-resume-accent px-3 py-1 rounded-full text-xs font-medium">
-            Image Processing
-          </span>
-        </div>
+      <div className="glass-panel p-4 rounded-lg bg-gradient-to-r from-gray-50 to-white border border-gray-100">
+        <p className="text-gray-700 leading-relaxed">{summary}</p>
       </div>
     </header>
   );
